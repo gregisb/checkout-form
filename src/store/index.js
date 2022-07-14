@@ -1,7 +1,7 @@
 import { reactive } from "vue";
 
 const state = reactive({
-  reactCount: 10,
+  reactCount: 0,
   vueCount: 0,
   angularCount: 0,
   payment: "Pix",
@@ -10,28 +10,36 @@ const state = reactive({
 
 const mutations = {
   reactIncrement() {
-    this.reactCount += 1;
+    state.reactCount += 1;
   },
   reactDecrement() {
-    if (this.reactCount === 0) return;
-    this.reactCount -= 1;
+    if (state.reactCount === 0) return;
+    state.reactCount -= 1;
   },
 
   vueIncrement() {
-    this.vueCount += 1;
+    state.vueCount += 1;
   },
   vueDecrement() {
-    if (this.vueCount === 0) return;
-    this.vueCount -= 1;
+    if (state.vueCount === 0) return;
+    state.vueCount -= 1;
   },
 
   angularIncrement() {
-    this.angularCount += 1;
+    state.angularCount += 1;
   },
   angularDecrement() {
-    if (this.angularCount === 0) return;
-    this.angularCount -= 1;
+    if (state.angularCount === 0) return;
+    state.angularCount -= 1;
   },
+  setPayment(value) {
+    state.payment = value
+    console.log(state.payment)
+  },
+  setComments(value) {
+    state.comments = value
+    console.log(state.comments)
+  }
 };
 
 export default {

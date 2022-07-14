@@ -15,17 +15,17 @@
         <tr>
           <td><label class="framework">React</label></td>
           <td>
-            <!-- <button class="countBtn" @click.prevent="reactDecrement">-</button> -->
+            <button class="countBtn" @click.prevent="reactDecrement">-</button>
           </td>
           <td>
             <p class="counter">{{ reactCount }}</p>
           </td>
           <td>
-            <!-- <button class="countBtn" @click.prevent="reactIncrement">+</button> -->
+            <button class="countBtn" @click.prevent="reactIncrement">+</button>
           </td>
         </tr>
 
-        <!-- <tr>
+        <tr>
           <td><label class="framework">Vue</label></td>
           <td>
             <button class="countBtn" @click.prevent="vueDecrement">-</button>
@@ -53,11 +53,11 @@
               +
             </button>
           </td>
-        </tr> -->
+        </tr>
       </table>
     </div>
 
-    <!-- <label>Forma de pagamento</label>
+    <label>Forma de pagamento</label>
     <select v-model="payment">
       <option value="Boleto">Boleto</option>
       <option value="Cartão de Crédito">Cartão de Crédito</option>
@@ -65,7 +65,7 @@
     </select>
 
     <label>Obersvações:</label>
-    <input class="comments" type="text" v-model="comments" /> -->
+    <input class="comments" type="text" v-model="comments" />
 
     <div class="submit">
       <router-link to="/checkout"><button>Enviar</button></router-link>
@@ -81,46 +81,66 @@ export default {
   name: "CheckoutForm",
   components: {},
 
-  setUp() {
+  setup() {
     const reactCount = computed(() => store.state.reactCount);
-    // const vueCount = computed(() => store.state.vueCount);
-    // const angularCount = computed(() => store.state.angularCount);
+    const vueCount = computed(() => store.state.vueCount);
+    const angularCount = computed(() => store.state.angularCount);
 
-    // const reactIncrement = () => {
-    //   store.mutations.reactIncrement();
-    // };
+    const reactIncrement = () => {
+      store.mutations.reactIncrement();
+    };
 
-    // const reactDecrement = () => {
-    //   store.mutations.reactDecrement();
-    // };
+    const reactDecrement = () => {
+      store.mutations.reactDecrement();
+    };
 
-    // const vueIncrement = () => {
-    //   store.mutations.vueIncrement();
-    // };
+    const vueIncrement = () => {
+      store.mutations.vueIncrement();
+    };
 
-    // const vueDecrement = () => {
-    //   store.mutations.vueDecrement();
-    // };
+    const vueDecrement = () => {
+      store.mutations.vueDecrement();
+    };
 
-    // const angularIncrement = () => {
-    //   store.mutations.angularIncrement();
-    // };
+    const angularIncrement = () => {
+      store.mutations.angularIncrement();
+    };
 
-    // const angularDecrement = () => {
-    //   store.mutations.angularDecrement();
-    // };
+    const angularDecrement = () => {
+      store.mutations.angularDecrement();
+    };
+
+    const payment = computed({
+      get() {
+        return store.state.payment;
+      },
+      set(value) {
+        store.mutations.setPayment(value);
+      }
+    });
+
+    const comments = computed({
+      get() {
+        return store.state.comments;
+      },
+      set(value) {
+        store.mutations.setComments(value);
+      }
+    })
 
     return {
       reactCount, 
-      // reactIncrement,      
-      // reactDecrement,
-      // vueCount,
-      // vueIncrement,
-      // vueDecrement,
-      // angularCount,
-      // angularIncrement,
-      // angularDecrement,
+      reactIncrement,      
+      reactDecrement,
+      vueCount,
+      vueIncrement,
+      vueDecrement,
+      angularCount,
+      angularIncrement,
+      angularDecrement,
       store,
+      payment,
+      comments
     };
   },
 };
