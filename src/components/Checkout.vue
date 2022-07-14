@@ -12,17 +12,21 @@
       <h3 v-else>Você não escolheu nenhum adesivo. :(</h3>
     </div>
     <div class="formData">
-      <p v-if="reactCount">React: {{ reactCount }} adesivos</p>
-      <p v-if="vueCount">Vue: {{ vueCount }} adesivos</p>
-      <p v-if="angularCount">Angular: {{ angularCount }} adesivos</p>
+      <p v-if="reactCount"><span id="tile">React:</span> {{ reactCount }} adesivos.</p>
+      <p v-if="vueCount"><span id="tile">Vue:</span> : {{ vueCount }} adesivos.</p>
+      <p v-if="angularCount"><span id="tile">Angular:</span> : {{ angularCount }} adesivos.</p>
+    </div>
+
+    <div class="totalPrice">
+      <p><span id="tile">Valor total:</span>  R${{ totalPrice() }},00</p>
     </div>
 
     <div class="payment">
-      <p>Forma de pagamento escolhida: {{ payment }}</p>
+      <p><span id="tile">Forma de pagamento escolhida:</span>  {{ payment }}</p>
     </div>
 
     <div>
-      <p>Observações:</p>
+      <p><span id="tile">Observações:</span></p>
       <p>{{ comments }}</p>
     </div>
   </form>
@@ -38,10 +42,11 @@ export default {
     const reactCount = computed(() => store.state.reactCount);
     const vueCount = computed(() => store.state.vueCount);
     const angularCount = computed(() => store.state.angularCount);
+    const totalPrice = computed(() => store.getters.totalPriceCalc);
     const payment = computed(() => store.state.payment);
     const comments = computed(() => store.state.comments);
 
-    return {reactCount, vueCount, angularCount, payment, comments}
+    return {reactCount, vueCount, angularCount, payment, comments, totalPrice}
   }
   
 }
@@ -63,8 +68,8 @@ h1 {
   font-size: 20px;
 }
 
-span {
-  color: white;
+#tile {
+  color: rgb(44, 44, 44);
 }
 form {
   max-width: 420px;

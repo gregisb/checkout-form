@@ -4,6 +4,10 @@ const state = reactive({
   reactCount: 0,
   vueCount: 0,
   angularCount: 0,
+  reactPrice: 3,
+  vuePrice: 3,
+  angularPrice: 3,
+  totalPrice: 0,
   payment: "Pix",
   comments: "",
 });
@@ -42,7 +46,23 @@ const mutations = {
   }
 };
 
+const getters = {
+  reactPriceCalc() {
+    return state.reactCount * state.reactPrice;
+  },
+  vuePriceCalc() {
+    return state.vueCount * state.vuePrice;
+  },
+  angularPriceCalc() {
+    return state.angularCount * state.angularPrice;
+  },
+  totalPriceCalc() {
+    return (state.reactCount + state.vueCount + state.angularCount) * 3;
+  }
+};
+
 export default {
   state,
   mutations,
+  getters
 };

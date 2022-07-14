@@ -23,6 +23,9 @@
           <td>
             <button class="countBtn" @click.prevent="reactIncrement">+</button>
           </td>
+          <td>
+            <p>R${{ reactPrice }},00</p>
+          </td>
         </tr>
 
         <tr>
@@ -35,6 +38,9 @@
           </td>
           <td>
             <button class="countBtn" @click.prevent="vueIncrement">+</button>
+          </td>
+          <td>
+            <p>R${{ vuePrice }},00</p>
           </td>
         </tr>
 
@@ -53,9 +59,16 @@
               +
             </button>
           </td>
+          <td>
+            <p>R${{ angularPrice }},00</p>
+          </td>
         </tr>
       </table>
     </div>
+      <div class="total">
+        <p>Total: R${{ totalPrice() }},00</p>
+      </div>
+
 
     <label>Forma de pagamento</label>
     <select v-model="payment">
@@ -85,6 +98,11 @@ export default {
     const reactCount = computed(() => store.state.reactCount);
     const vueCount = computed(() => store.state.vueCount);
     const angularCount = computed(() => store.state.angularCount);
+    const reactPrice = computed(() => store.getters.reactPriceCalc());
+    const vuePrice = computed(() => store.getters.vuePriceCalc());
+    const angularPrice = computed(() => store.getters.angularPriceCalc());
+    const totalPrice = computed(() => store.getters.totalPriceCalc);
+
 
     const reactIncrement = () => {
       store.mutations.reactIncrement();
@@ -116,7 +134,7 @@ export default {
       },
       set(value) {
         store.mutations.setPayment(value);
-      }
+      },
     });
 
     const comments = computed({
@@ -125,12 +143,12 @@ export default {
       },
       set(value) {
         store.mutations.setComments(value);
-      }
-    })
+      },
+    });
 
     return {
-      reactCount, 
-      reactIncrement,      
+      reactCount,
+      reactIncrement,
       reactDecrement,
       vueCount,
       vueIncrement,
@@ -140,7 +158,11 @@ export default {
       angularDecrement,
       store,
       payment,
-      comments
+      comments,
+      reactPrice,
+      vuePrice,
+      angularPrice,
+      totalPrice
     };
   },
 };
@@ -173,11 +195,12 @@ form {
   padding: 40px;
   border-radius: 10px;
 }
-label {
+label,
+p {
   color: rgb(116, 116, 116);
   display: inline-block;
   margin: 25px 0 15px;
-  font-size: 0.6em;
+  font-size: 0.7em;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: bold;
@@ -252,5 +275,10 @@ button:hover {
 }
 .submit {
   text-align: right;
+}
+
+.total {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
