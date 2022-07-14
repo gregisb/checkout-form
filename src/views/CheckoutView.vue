@@ -9,12 +9,10 @@
       </h1>
     </div>
     <div>
-      <h3>Parabéns! <br />A sua compra foi realizada da seguinte forma:</h3>
+      <h3>Parabéns! <br />A sua compra foi realizada!</h3>
     </div>
     <div class="formData">
-      
-      <!-- <p>Forma de pagamento: {{ store.payment }}</p>
-      <p>Obersvações: {{ store.comments }}</p> -->
+
     </div>
 
     

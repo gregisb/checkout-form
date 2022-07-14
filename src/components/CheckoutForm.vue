@@ -72,7 +72,7 @@
 
        
     <div class="submit">
-      <router-link to="/checkout">Enviar</router-link>
+      <router-link to="/checkout"><button>Enviar</button></router-link>
     </div> 
   </form>
 
